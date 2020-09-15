@@ -16,7 +16,7 @@ public class RabbitMQConfig {
     public CustomExchange delayExchage(){
         Map<String,Object> args = new HashMap<>();
         args.put("x-delayed-type","direct");
-        return  new CustomExchange("delayed_exchange","x-delay-message",true,false,args);
+        return  new CustomExchange("delayed_exchange","x-delayed-message",true,false,args);
     }
 
     @Bean

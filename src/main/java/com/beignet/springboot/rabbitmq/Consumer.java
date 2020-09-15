@@ -13,7 +13,7 @@ public class Consumer {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
         String time = sdf.format(new Date());
         msg = time+":"+msg;
-        System.out.println(msg);
+        System.out.println("消息接受："+msg);
 
     }
 }

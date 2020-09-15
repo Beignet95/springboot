@@ -23,6 +23,7 @@ public class Producer {
             @Override
             public Message postProcessMessage(Message message) throws AmqpException {
                 message.getMessageProperties().setHeader("x-depay",5000);
+                System.out.println("消息推送："+message);
                 return message;
             }
         });
