@@ -24,6 +24,11 @@ public class RabbitMQConfig {
         return new Queue("queue1");
     }
 
+   /* @Bean
+    public Queue getSimpleQueue(){
+        return new Queue("simple_queue");
+    }*/
+
     @Bean
     public Binding bind(){
         return BindingBuilder.bind(getQueue()).to(delayExchage()).with("queue1").noargs();

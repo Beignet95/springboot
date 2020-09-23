@@ -22,7 +22,7 @@ public class Producer {
         rabbitTemplate.convertAndSend("delayed_exchange",queueName,message,new MessagePostProcessor(){
             @Override
             public Message postProcessMessage(Message message) throws AmqpException {
-                message.getMessageProperties().setHeader("x-depay",5000);
+                message.getMessageProperties().setHeader("x-depay",5);
                 System.out.println("消息推送："+message);
                 return message;
             }
