@@ -2,7 +2,9 @@ package com.beignet.springboot;
 
 import com.beignet.springboot.rabbitmq.Consumer;
 import com.beignet.springboot.rabbitmq.Producer;
+import com.beignet.springboot.rabbitmq.QueueDemo.ReceiverA;
 import com.beignet.springboot.rabbitmq.QueueDemo.SenderA;
+import com.beignet.springboot.rabbitmq.topic.TopicSenderA;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,8 @@ public class RabbitMQTest {
     Producer producer;
     @Autowired
     SenderA senderA;
+    @Autowired
+    ReceiverA receiverA;
     @Test
     public void rabbitMQTest1(){
         producer.send("queue1","你很票量");
@@ -26,7 +30,7 @@ public class RabbitMQTest {
 
     @Test
     public void queueDemoTest(){
-        senderA.Send("hello world!");
+        senderA.Send("hello world a!");
     }
 
     @Test
@@ -40,5 +44,18 @@ public class RabbitMQTest {
                 e.printStackTrace();
             }
         }
+    }
+
+    @Autowired
+    TopicSenderA topicSenderA;
+
+    @Test
+    public void TopicTest(){
+        String msg = "topic.1";
+        String msg2 = "topic.a";
+        String msg3 = "topic.b";
+        topicSenderA.send(msg);
+        topicSenderA.send2(msg2);
+        topicSenderA.send3(msg3);
     }
 }

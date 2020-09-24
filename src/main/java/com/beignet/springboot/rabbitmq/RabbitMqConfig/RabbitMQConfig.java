@@ -24,10 +24,10 @@ public class RabbitMQConfig {
         return new Queue("queue1");
     }
 
-   /* @Bean
+    @Bean
     public Queue getSimpleQueue(){
         return new Queue("simple_queue");
-    }*/
+    }
 
     @Bean
     public Binding bind(){

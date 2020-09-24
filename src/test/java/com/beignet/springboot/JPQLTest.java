@@ -9,4 +9,5 @@ public class JPQLTest {
     @Autowired
     UserRepository userRepository;
 
+    
 }
