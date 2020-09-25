@@ -4,8 +4,10 @@ import com.beignet.springboot.rabbitmq.Consumer;
 import com.beignet.springboot.rabbitmq.Producer;
 import com.beignet.springboot.rabbitmq.QueueDemo.ReceiverA;
 import com.beignet.springboot.rabbitmq.QueueDemo.SenderA;
+import com.beignet.springboot.rabbitmq.fanout.FanoutSenderA;
+import com.beignet.springboot.rabbitmq.fanout.User;
 import com.beignet.springboot.rabbitmq.topic.TopicSenderA;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,6 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.Date;
 
 @SpringBootTest
+@RunWith(SpringRunner.class)
 public class RabbitMQTest {
     @Autowired
     Consumer consumer;
@@ -32,7 +35,6 @@ public class RabbitMQTest {
     public void queueDemoTest(){
         senderA.Send("hello world a!");
     }
-
     @Test
     public void QueueSend() {
         int i = 2;
@@ -57,5 +59,14 @@ public class RabbitMQTest {
         topicSenderA.send(msg);
         topicSenderA.send2(msg2);
         topicSenderA.send3(msg3);
+    }
+    @Autowired
+    FanoutSenderA fanoutSenderA;
+    @Test
+    public void fanoutTest(){
+        User user = new User();
+        user.setName("Beignet");
+        user.setAge(23);
+        fanoutSenderA.send(user);
     }
 }
